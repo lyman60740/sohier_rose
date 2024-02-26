@@ -79,7 +79,7 @@ const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
     return (
         <group scale={viewport.width /3.5}> 
         <Text fontSize={textFontSize} position={[0, 0, -1]} font="fonts\BrokenScript.otf">
-    SOHIER
+    sohier
   </Text>
         
         <group ref={groupRef}  position={[position.x, position.y, position.z]} rotation={[rotation.x, rotation.y, rotation.z]}>
