@@ -18,10 +18,10 @@ const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
         position: { value: { x: 0, y: 0, z: -0.7 }, step: 0.1 },
         rotation: { value: { x: -1.7, y: -3.2, z: 0 }, step: 0.1 },
       });
-      const { position1, rotation1, scaleX, scaleY } = useControls('Transform', {
-        position1: { value: { x: 0, y: 0.1, z: 0 }, step: 0.1 },
-        rotation1: { value: { x: 0, y: 0, z: 0 }, step: 0.1 },
-      });
+    //   const { position1, rotation1, scaleX, scaleY } = useControls('Transform', {
+    //     position1: { value: { x: 0, y: 0.1, z: 0 }, step: 0.1 },
+    //     rotation1: { value: { x: 0, y: 0, z: 0 }, step: 0.1 },
+    //   });
       const { textFontSize, rotationSpeed } = useControls({
         textFontSize: { value: 0.8, min: 0.1, max: 5, step: 0.1 },
         rotationSpeed: { value: 0.01, min: 0.001, max: 0.1, step: 0.001 },
