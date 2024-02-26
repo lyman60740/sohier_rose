@@ -19,11 +19,12 @@ const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
         position: { value: { x: 0, y: 0, z: -0.7 }, step: 0.1 },
         rotation: { value: { x: -1.7, y: -3.2, z: 0 }, step: 0.1 },
       });
-      const { positionFont,textFontSize, rotationFont, letterSpace } = useControls('Font Params', {
+      const { positionFont,textFontSize, rotationFont, letterSpace, opacity } = useControls('Font Params', {
         positionFont: { value: { x: 0, y: 0., z: -1.2 }, step: 0.1 },
         rotationFont: { value: { x: 0, y: 0, z: 0 }, step: 0.1 },
         textFontSize: { value: 0.8, min: 0.1, max: 5, step: 0.1 },
         letterSpace: { value: 0.1, min: 0.001, max: 2, step: 0.1 },
+        opacity: { value: 1, min: 0, max: 1, step: 0.1 },
       });
       const {  rotationSpeed } = useControls({
         
@@ -92,7 +93,7 @@ const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
     
     return (
         <group scale={viewport.width /3.5}> 
-        <Text ref={font} fontSize={textFontSize} letterSpacing={letterSpace}  font="fonts\BrokenScript.otf" >
+        <Text ref={font} fontSize={textFontSize} letterSpacing={letterSpace} fillOpacity={opacity}  font="fonts\BrokenScript.otf" >
     sohier
     
   </Text>
