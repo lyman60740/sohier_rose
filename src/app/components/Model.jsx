@@ -26,7 +26,7 @@ const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
       });
       const {  rotationSpeed } = useControls({
         
-        rotationSpeed: { value: 0.01, min: 0.001, max: 0.1, step: 0.001 },
+        rotationSpeed: { value: 0.001, min: 0.000, max: 0.100, step: 0.001 },
       });
       
     useFrame(({ mouse }) => {
