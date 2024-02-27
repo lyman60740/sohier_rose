@@ -104,26 +104,26 @@ const { viewport, camera } = useThree();
       });
  
 
-    // const materialProps = useControls({
-    //     thickness: {value: 0.2, min: 0, max: 3, step: 0.05},
-    //     roughness: {value: 0, min: 0, max: 1, step: 0.1},
-    //     transmission: {value: 1, min: 0, max: 1, step: 0.1},
-    //     ior: {value: 1.2, min: 1, max: 3, step: 0.1},
-    //     chromaticAberration: {value: 0.02, min: 0, max: 1},
-    //     backside: {value: true},
+    const materialProps = useControls({
+        thickness: {value: 0.2, min: 0, max: 3, step: 0.05},
+        roughness: {value: 0, min: 0, max: 1, step: 0.1},
+        transmission: {value: 1, min: 0, max: 1, step: 0.1},
+        ior: {value: 1.2, min: 1, max: 3, step: 0.1},
+        chromaticAberration: {value: 0.02, min: 0, max: 1},
+        backside: {value: true},
         
 
 
-    // })
+    })
 
-    const materialProps = {
-        thickness: 0.2, // valeur directe
-        roughness: 0, // valeur directe
-        transmission: 1, // valeur directe
-        ior: 1.2, // valeur directe
-        chromaticAberration: 0.02, // valeur directe
-        backside: true, // valeur directe
-    };
+    // const materialProps = {
+    //     thickness: 0.2, // valeur directe
+    //     roughness: 0, // valeur directe
+    //     transmission: 1, // valeur directe
+    //     ior: 1.2, // valeur directe
+    //     chromaticAberration: 0.02, // valeur directe
+    //     backside: true, // valeur directe
+    // };
     return (
         <group scale={viewport.width /3.5}> 
         <Text ref={font} fontSize={textFontSize} letterSpacing={letterSpace} fillOpacity={opacity}  font="fonts\BrokenScript.otf" >
