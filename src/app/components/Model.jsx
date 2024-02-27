@@ -13,18 +13,19 @@ export default function Model({ isPlaying }) {
     const font = useRef();
     const { nodes: nodesRose } = useGLTF("/medias/roseS.glb");
 const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
+const isMobile = window.innerWidth < 768;
 
 
 const { viewport, camera } = useThree();
     const analyserRef = useRef(null);
     const { position, rotation } = useControls('Transform', {
-        position: { value: { x: 0, y: 0, z: -0.7 }, step: 0.1 },
+        position: { value: { x: 0, y: 0, z: !isMobile ? -0.7 : 1.8 }, step: 0.1 },
         rotation: { value: { x: -1.7, y: -3.2, z: 0 }, step: 0.1 },
       });
       const { positionFont,textFontSize, rotationFont, letterSpace, opacity } = useControls('Font Params', {
         positionFont: { value: { x: 0, y: 0., z: -1.2 }, step: 0.1 },
         rotationFont: { value: { x: 0, y: 0, z: 0 }, step: 0.1 },
-        textFontSize: { value: 0.8, min: 0.1, max: 5, step: 0.1 },
+        textFontSize: { value: !isMobile ? 0.8 : 1.4, min: 0.1, max: 5, step: 0.1 },
         letterSpace: { value: 0.1, min: 0.001, max: 2, step: 0.1 },
         opacity: { value: 1, min: 0, max: 1, step: 0.1 },
       });
