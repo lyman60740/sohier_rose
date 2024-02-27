@@ -3,9 +3,10 @@ import { useFrame, useThree } from "@react-three/fiber";
 import React, { useRef, useEffect, useState } from "react";
 import { useControls } from "leva";
 import { AudioLoader, AudioListener, Audio, AudioAnalyser } from "three";
+import '../scene.css';
 
 export default function Model({ isPlaying }) {
-
+    
     const mesh = useRef();
     const mesh1 = useRef();
     const groupRef = useRef();
@@ -85,19 +86,6 @@ const { viewport, camera } = useThree();
         font.current.rotation.y = rotationFont.y;
         font.current.rotation.z = rotationFont.z;
 
-
-
-        // barbed.current.rotation.x = rotationFont.x;
-        // barbed.current.rotation.y = rotationFont.y;
-        // barbed.current.rotation.z = rotationFont.z;
-        
-        // barbed.current.position.y = positionFont.y;
-        // barbed.current.position.x = positionFont.x;
-        // barbed.current.position.z = positionFont.z;
-
-
-
-
         if (analyserRef.current && groupRef.current) {
             const data = analyserRef.current.getAverageFrequency();
             const scale = data / 1000; // Adjust the scale factor as needed
@@ -105,11 +93,6 @@ const { viewport, camera } = useThree();
             
           }
 
-
-        // groupRef.current.rotation.x = rotation.x;
-        // groupRef.current.rotation.y = rotation.y;
-        // groupRef.current.rotation.z += 0.005;
-        
         groupRef.current.position.y = position.y;
         groupRef.current.position.x = position.x;
         groupRef.current.position.z = position.z;
@@ -121,18 +104,26 @@ const { viewport, camera } = useThree();
       });
  
 
-    const materialProps = useControls({
-        thickness: {value: 0.2, min: 0, max: 3, step: 0.05},
-        roughness: {value: 0, min: 0, max: 1, step: 0.1},
-        transmission: {value: 1, min: 0, max: 1, step: 0.1},
-        ior: {value: 1.2, min: 1, max: 3, step: 0.1},
-        chromaticAberration: {value: 0.02, min: 0, max: 1},
-        backside: {value: true},
+    // const materialProps = useControls({
+    //     thickness: {value: 0.2, min: 0, max: 3, step: 0.05},
+    //     roughness: {value: 0, min: 0, max: 1, step: 0.1},
+    //     transmission: {value: 1, min: 0, max: 1, step: 0.1},
+    //     ior: {value: 1.2, min: 1, max: 3, step: 0.1},
+    //     chromaticAberration: {value: 0.02, min: 0, max: 1},
+    //     backside: {value: true},
+        
 
 
-    })
+    // })
 
-    
+    const materialProps = {
+        thickness: 0.2, // valeur directe
+        roughness: 0, // valeur directe
+        transmission: 1, // valeur directe
+        ior: 1.2, // valeur directe
+        chromaticAberration: 0.02, // valeur directe
+        backside: true, // valeur directe
+    };
     return (
         <group scale={viewport.width /3.5}> 
         <Text ref={font} fontSize={textFontSize} letterSpacing={letterSpace} fillOpacity={opacity}  font="fonts\BrokenScript.otf" >

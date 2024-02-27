@@ -15,3 +15,6 @@
     transform: translateX(-50%);
     color: white;
 }
+#leva__root {
+    display: none;
+}
