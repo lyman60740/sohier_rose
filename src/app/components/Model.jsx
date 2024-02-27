@@ -1,10 +1,10 @@
 import { useGLTF, Text, MeshTransmissionMaterial, MeshDistortMaterial } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import React, {useRef} from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useControls } from "leva";
+import { AudioLoader, AudioListener, Audio, AudioAnalyser } from "three";
 
-
-export default function Model() {
+export default function Model({ isPlaying }) {
 
     const mesh = useRef();
     const mesh1 = useRef();
@@ -14,7 +14,9 @@ export default function Model() {
     const { nodes: nodesRose } = useGLTF("/medias/roseS.glb");
 const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
 
-    const { viewport } = useThree();
+
+const { viewport, camera } = useThree();
+    const analyserRef = useRef(null);
     const { position, rotation } = useControls('Transform', {
         position: { value: { x: 0, y: 0, z: -0.7 }, step: 0.1 },
         rotation: { value: { x: -1.7, y: -3.2, z: 0 }, step: 0.1 },
@@ -30,8 +32,40 @@ const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
         
         rotationSpeed: { value: 0.001, min: 0.000, max: 0.100, step: 0.001 },
       });
+
       
-    useFrame(({ mouse }) => {
+      useEffect(() => {
+        const listener = new AudioListener();
+        camera.add(listener);
+    
+        const sound = new Audio(listener);
+        const audioLoader = new AudioLoader();
+        audioLoader.load('/medias/paradisio.mp3', (buffer) => {
+          sound.setBuffer(buffer);
+          sound.setLoop(true);
+          sound.setVolume(0.5);
+          if (isPlaying) {
+            sound.play();
+        } else {
+            sound.pause(); // ou sound.stop() selon le besoin
+        }
+
+        });
+    
+        const analyser = new AudioAnalyser(sound, 32);
+        analyserRef.current = analyser; // Stocke l'analyseur dans la ref
+
+        // Gère la lecture ou la pause basée sur la prop isPlaying
+       
+        return () => {
+          camera.remove(listener);
+          if (sound.isPlaying) {
+              sound.stop();
+          }
+        };
+    }, [camera, isPlaying]);
+
+    useFrame(() => {
         
  
         mesh1.current.rotation.x = -1.8;
@@ -63,17 +97,24 @@ const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
 
 
 
-        
+        if (analyserRef.current && groupRef.current) {
+            const data = analyserRef.current.getAverageFrequency();
+            const scale = data / 1000; // Adjust the scale factor as needed
+            groupRef.current.scale.set(scale + 1, scale + 1, scale + 1); 
+            
+          }
 
 
-        groupRef.current.rotation.x = rotation.x;
-        groupRef.current.rotation.y = rotation.y;
+        // groupRef.current.rotation.x = rotation.x;
+        // groupRef.current.rotation.y = rotation.y;
         // groupRef.current.rotation.z += 0.005;
         
         groupRef.current.position.y = position.y;
         groupRef.current.position.x = position.x;
         groupRef.current.position.z = position.z;
 
+        groupRef.current.rotation.x += rotationSpeed;
+        groupRef.current.rotation.y += rotationSpeed;
         groupRef.current.rotation.z += rotationSpeed;
 
       });
