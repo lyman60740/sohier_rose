@@ -18,3 +18,26 @@
 #leva__root {
     display: none;
 }
+.audio-player {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+}
+.suspense {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+canvas {
+    animation: appear 2s forwards ease;
+    opacity: 0;
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

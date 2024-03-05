@@ -13,7 +13,7 @@ export default function Model({ isPlaying }) {
     const barbed = useRef();
     const font = useRef();
     const { nodes: nodesRose } = useGLTF("/medias/roseS.glb");
-const { nodes: nodesBarbed } = useGLTF("/medias/wire1.glb");
+
 const isMobile = window.innerWidth < 768;
 
 
@@ -99,7 +99,7 @@ const { viewport, camera } = useThree();
 
         groupRef.current.rotation.x += rotationSpeed;
         groupRef.current.rotation.y += rotationSpeed;
-        groupRef.current.rotation.z += rotationSpeed;
+        groupRef.current.rotation.z -= rotationSpeed;
 
       });
  
